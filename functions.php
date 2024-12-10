@@ -9,12 +9,6 @@ function theme_enqueue_styles() {
     wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/script.js', array(), false, true);
 }
 
-function enqueue_modal_scripts() {
-    wp_enqueue_script('theme-modal-script', get_stylesheet_directory_uri() . '/script.js', array('jquery'), null, true); // Charger le fichier script.js
-}
-add_action('wp_enqueue_scripts', 'enqueue_modal_scripts');
-
-
   // Activer le support du logo personnalisé
   add_theme_support('custom-logo', array(
     'height'      => 22,
@@ -28,5 +22,3 @@ register_nav_menus(array(
     'header-menu' => ('Menu Principal'),
     'footer-menu' => ('Menu Footer'),
 ));
-
-

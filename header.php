@@ -22,6 +22,7 @@
     ?>
 <!-- Bouton ouverture modal -->
         <button id="myBtn">CONTACT</button>
-    
     </nav>
+
+    <?php get_template_part('template-parts/modal_contact'); ?>
 </header>

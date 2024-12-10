@@ -6,11 +6,6 @@
     ) );
     ?>
 
-<?php
-// Inclure la modale de contact
-get_template_part('template-parts/modal_contact');
-?>
-
     <?php wp_footer(); ?>
 </footer>
 </body>
