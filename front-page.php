@@ -1,5 +1,14 @@
 <?php get_header(); ?>
 
+<!-- HERO BANNER -->
+<section class="hero-banner" style="background-image: url('<?php echo get_random_hero_image(); ?>');">
+    <div class="hero-content">
+        <h1>
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/Images/Titre_header.png" alt="Bienvenue sur notre site">
+        </h1>
+    </div>
+</section>
+
 <form id="filter-form">
 
     <select id="categorie" name="categorie">
@@ -40,32 +49,37 @@
 
 
 <?php
-// Boucle pour afficher les photos
+// Boucle pour afficher les photos //
 $args = array(
-    'post_type'      => 'photo',  // Custom Post Type "photo"
-    'posts_per_page' => 8,        // Limiter à 8 photos 
+    'post_type'      => 'photo',
+    'posts_per_page' => 8,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'paged'          => 1,  // Initialisation de la page à 1
 );
-/* affiche image scf*/
+
 $query = new WP_Query($args);
 
 if ($query->have_posts()) :
     echo '<div class="photo-gallery">';
     while ($query->have_posts()) : $query->the_post(); ?>
-        <div class="photo-item">
-            <a href="<?php the_permalink(); ?>"> <!-- Lien vers la photo -->
+        <article class="photo-item">
+            <a href="<?php the_permalink(); ?>" aria-label="<?php the_title_attribute(); ?>">
                 <?php 
                 if (has_post_thumbnail()) {
-                    the_post_thumbnail('medium'); // Affiche l'image mise en avant
+                    the_post_thumbnail('medium', ['class' => 'photo-thumbnail']);
+                } else {
+                    echo '<img src="' . get_stylesheet_directory_uri() . '/Images/placeholder.jpg" alt="Image non disponible" class="photo-thumbnail">';
                 }
                 ?>
             </a>
-        </div>
+        </article>
     <?php endwhile;
     echo '</div>';
-    wp_reset_postdata(); // Réinitialiser la requête principale
+    echo '<button id="load-more-photos" data-page="2">Charger plus</button>'; // Le bouton "Charger plus" avec la page suivante
+    wp_reset_postdata();
 else :
     echo '<p>Aucune photo trouvée.</p>';
 endif;
-?>
-<?php get_footer(); ?>
+get_footer(); ?>
 
