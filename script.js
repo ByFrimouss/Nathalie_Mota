@@ -21,3 +21,30 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+/* ** POPUP **/
+
+jQuery(document).ready(function ($) {
+  // Afficher la popup au clic sur le bouton "Contact"
+  $("#contact-button").on("click", function () {
+    var reference = $('p:contains("Référence :")')
+      .text()
+      .replace("Référence :", "")
+      .trim();
+    $("#ref-photo").val(reference); // Préremplir le champ Réf. PHOTO
+    $("#popup").removeClass("hidden");
+  });
+
+  // Fermer la popup avec le bouton de fermeture
+  $(".popup-close").on("click", function () {
+    $("#popup").addClass("hidden");
+  });
+
+  // Fermer la popup en cliquant en dehors du contenu
+  $(window).on("click", function (event) {
+    var popup = $("#popup");
+    if (event.target == popup[0]) {
+      popup.addClass("hidden");
+    }
+  });
+});

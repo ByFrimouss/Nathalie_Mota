@@ -22,3 +22,9 @@ register_nav_menus(array(
     'header-menu' => ('Menu Principal'),
     'footer-menu' => ('Menu Footer'),
 ));
+
+/* ** INCLURE JQUERY DEPUIS WORDPRESS (il est déjà intégré par défaut) **/
+function custom_enqueue_scripts() {
+    wp_enqueue_script('jquery');
+}
+add_action('wp_enqueue_scripts', 'custom_enqueue_scripts');
