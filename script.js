@@ -78,3 +78,77 @@ jQuery(document).ready(function ($) {
     });
   });
 });
+
+// TRAITEMENT DES FILTRES
+jQuery(document).ready(function ($) {
+  // Fonction pour charger les photos en fonction des filtres
+  function fetchPhotos() {
+    var categorie = $("#categorie").val(); // Récupère la valeur de la catégorie
+    var format = $("#format").val(); // Récupère la valeur du format
+    var ordre = $("#ordre").val(); // Récupère l'ordre de tri
+
+    var data = {
+      action: "filter_photos", // Action AJAX que nous allons créer dans PHP
+      categorie: categorie,
+      format: format,
+      ordre: ordre,
+    };
+
+    $.ajax({
+      url: ajaxurl, // URL pour les requêtes Ajax (localisé dans WordPress)
+      type: "GET",
+      data: data,
+      beforeSend: function () {
+        // Avant la requête, afficher un indicateur de chargement
+        $(".photo-gallery").html("<p>Chargement des photos...</p>");
+      },
+      success: function (response) {
+        if (response) {
+          // Remplace le contenu de la galerie avec les nouvelles photos
+          $(".photo-gallery").html(response);
+        } else {
+          // Si aucune photo n'est trouvée
+          $(".photo-gallery").html("<p>Aucune photo trouvée.</p>");
+        }
+      },
+    });
+  }
+
+  // Déclenche une requête Ajax chaque fois qu'un filtre est changé
+  $("#categorie, #format, #ordre").on("change", function () {
+    fetchPhotos();
+  });
+});
+
+// HOVER SUR LES FILTRES
+
+jQuery(document).ready(function ($) {
+  // Initialiser Select2 sur tous les éléments de filtre
+  $("#categorie, #format, #ordre").select2({
+    allowClear: true, // Permet de vider la sélection
+  });
+
+  // Configurer spécifiquement #format et #ordre pour masquer le champ de recherche
+  $("#format, #ordre").select2({
+    minimumResultsForSearch: Infinity, // Désactive complètement le champ de recherche
+  });
+});
+
+// LIGHTBOX
+
+var $lightbox = $(".lightbox"); // L'élément HTML
+
+// Ouvrir la lightbox
+$(".acf-gallery a").click(function (e) {
+  e.preventDefault(); // On empêche le changement de page
+  var url = $(this).attr("href"); // On récupère l'URL de l'image dans href
+
+  // On applique l'image en fond
+  $lightbox.css("background-image", "url(" + url + ")");
+  $lightbox.fadeIn(); // Et on fait apparaitre la lightbox
+});
+
+// Fermer la lightbox
+$lightbox.click(function () {
+  $lightbox.fadeOut();
+});
