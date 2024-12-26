@@ -5,7 +5,7 @@
 
 <article class="post">
 <div class="details">
-    <h2><?php the_title(); ?></h2>
+    <h1><?php the_title(); ?></h1>
     <?php 
 // Afficher la référence
 if (function_exists('get_field') && $reference = get_field('Reference')) {
@@ -38,7 +38,7 @@ if (function_exists('get_field') && $type = get_field('Type')) {
 <div class="photo-image">
         <?php 
         if (has_post_thumbnail()) {
-            the_post_thumbnail('large', ['class' => 'photo-display']);
+            the_post_thumbnail('original', ['class' => 'photo-display']);
         } 
         ?>
     </div>
@@ -101,7 +101,7 @@ if (function_exists('get_field') && $type = get_field('Type')) {
 
 <!-- Section des photos apparentées -->
 <section class="related-photos">
-    <h3>VOUS AIMEREZ AUSSI</h3>
+    <h2>VOUS AIMEREZ AUSSI</h2>
     <div class="related-photos-gallery">
         <?php
         // Afficher les photos apparentées

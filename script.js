@@ -49,7 +49,7 @@ jQuery(document).ready(function ($) {
   });
 });
 
-/* ** ACTION AJAX **/
+/* ** ACTION AJAX POUR CHARGER PLUS **/
 jQuery(document).ready(function ($) {
   $("#load-more-photos").on("click", function () {
     var button = $(this);
@@ -132,23 +132,4 @@ jQuery(document).ready(function ($) {
   $("#format, #ordre").select2({
     minimumResultsForSearch: Infinity, // Désactive complètement le champ de recherche
   });
-});
-
-// LIGHTBOX
-
-var $lightbox = $(".lightbox"); // L'élément HTML
-
-// Ouvrir la lightbox
-$(".acf-gallery a").click(function (e) {
-  e.preventDefault(); // On empêche le changement de page
-  var url = $(this).attr("href"); // On récupère l'URL de l'image dans href
-
-  // On applique l'image en fond
-  $lightbox.css("background-image", "url(" + url + ")");
-  $lightbox.fadeIn(); // Et on fait apparaitre la lightbox
-});
-
-// Fermer la lightbox
-$lightbox.click(function () {
-  $lightbox.fadeOut();
 });

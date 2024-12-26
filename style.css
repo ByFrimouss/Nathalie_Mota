@@ -282,9 +282,9 @@ input[type="submit"]:hover {
   margin: 0 200px;
 }
 
-.photo-item {
+/* .photo-item {
   text-align: center;
-}
+} */
 
 .photo-item img {
   width: 564px;
@@ -295,6 +295,109 @@ input[type="submit"]:hover {
 .details {
   border-bottom: solid;
   width: 564px;
+}
+
+/* Conteneur principal de l'image */
+.photo-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Image principale */
+.photo-thumbnail {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Overlay masqué par défaut */
+.photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+/* Titre et catégorie */
+.photo-info {
+  display: flex;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  color: white;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.photo-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
+
+.photo-category {
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+}
+
+/* Icônes */
+.photo-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon:hover {
+  scale: 0.8;
+}
+
+/* Position spécifique des icônes */
+.icon-view {
+  position: relative;
+  top: 800%;
+  left: 50%;
+  width: 50px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background: url("Images/Icon_eye.svg") center center / 100% 100%;
+}
+
+.icon-lightbox {
+  position: relative;
+  top: 80%;
+  left: 170%;
+  width: 50px;
+  height: 30px;
+  background: url("Images/visionnage.svg") center center / 100% 100%;
+}
+
+/* Effet de hover sur l'image */
+.photo-item:hover .photo-thumbnail {
+  transform: scale(1.05);
+}
+
+/* Afficher l'overlay au hover */
+.photo-item:hover .photo-overlay {
+  opacity: 1;
 }
 
 /* photo single-photo */
@@ -430,7 +533,7 @@ input[type="submit"]:hover {
   margin-top: 60px;
 }
 
-.post h2 {
+.post h1 {
   width: 400px; /* Ajustez selon vos besoins */
   word-wrap: break-word; /* Pour forcer un retour à la ligne si nécessaire */
   white-space: normal; /* Permet les retours à la ligne */
@@ -458,6 +561,11 @@ input[type="submit"]:hover {
   height: 844px !important;
   margin-top: 20px;
   object-fit: cover;
+}
+
+.photo-image {
+  width: 563px !important;
+  height: 844px !important;
 }
 
 /* Styles généraux pour les labels */
@@ -578,12 +686,10 @@ form {
   transform: scale(1.05);
 }
 
-/* SECTION VOUS AIMERIZE AUSSI  */
+/* SECTION VOUS AIMERIEZ AUSSI  */
 .related-photos-gallery {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 70px;
 }
 
@@ -591,19 +697,120 @@ form {
   width: 564px;
   height: 495px;
   object-fit: cover;
+  transition: transform 0.3s ease;
+  z-index: 0;
 }
+
 .related-photos {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
   margin-bottom: 90px;
   border-top: solid;
   max-width: 1200px;
   margin-left: 160px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.related-photos h3 {
-  padding-top: 60px;
-  padding-bottom: 40px;
+.related-photos h2 {
+  margin: 80px 0 50px 0;
   font-family: "Space Mono", monospace;
-  font-size: 18px;
   font-weight: 400;
+  font-size: 18px;
+}
+.related-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+/** HOVER **/
+/* Overlay masqué par défaut */
+.photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+/* Titre et catégorie */
+
+.photo-info-related {
+  display: flex;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  color: white;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.photo-title-related {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  margin: 0;
+  color: #ffffff !important;
+}
+
+.photo-category-related {
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20.73px;
+  text-align: left;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+/* Icônes */
+.photo-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon:hover {
+  scale: 0.8;
+}
+
+/* Position spécifique des icônes */
+.icon-related {
+  position: relative;
+  top: -700%;
+  left: 50%;
+  width: 50px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background: url("images/Icon_eye.svg") center center / 100% 100%;
+}
+
+.icon-related2 {
+  position: relative;
+  top: -1400%;
+  left: 160%;
+  width: 50px;
+  height: 30px;
+  background: url("images/visionnage.svg") center center / 100% 100%;
+}
+
+/* Afficher l'overlay au hover */
+.photo-item:hover .photo-overlay {
+  opacity: 1;
 }
 
 /* PAGINATION SINGLE-PHOTO.PHP  */
@@ -734,21 +941,4 @@ form {
 #load-more-photos:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-/* LIGTHBOX */
-
-.lightbox {
-  display: none; /* cachée par défaut */
-  position: fixed; /* fixée et qui prend tout l'écran */
-  z-index: 1000; /* Pour être sûr de passer au dessus du reste */
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* noire avec transparence */
-  background-size: contain; /* l'image occupe tout l'espace disponible */
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer; /* Le curseur a la même forme que sur un lien */
 }
