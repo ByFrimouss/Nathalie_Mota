@@ -1,12 +1,22 @@
-// MODAL
+//////////////////////////// MODAL /////////////////////////////
+
 const modal = document.getElementById("contact-modal");
 const btn = document.getElementById("myBtn"); // Le bouton qui ouvre la fenêtre modale
+
+// Lien CONTACT pour le menu mobile
+var mobileContactLink = document.getElementById("mobileContactLink");
 
 //Récupérez l'élément <span> qui ferme la modale
 const span = document.getElementsByClassName("close")[0];
 
 // Lorsque l'utilisateur clique sur le bouton, ouvrez la fenêtre modale
 btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// Lorsque l'utilisateur clique sur le lien CONTACT (version téléphone) //ici
+mobileContactLink.onclick = function (event) {
+  event.preventDefault(); // Empêche le comportement par défaut du lien
   modal.style.display = "block";
 };
 
@@ -22,7 +32,7 @@ window.onclick = function (event) {
   }
 };
 
-/* ** POPUP **/
+//////////////// POPUP ////////////////////////////
 
 jQuery(document).ready(function ($) {
   // Afficher la popup au clic sur le bouton "Contact"
@@ -49,7 +59,8 @@ jQuery(document).ready(function ($) {
   });
 });
 
-/* ** ACTION AJAX POUR CHARGER PLUS **/
+/////////////// AJAX POUR CHARGER PLUS //////////////////////
+
 jQuery(document).ready(function ($) {
   $("#load-more-photos").on("click", function () {
     var button = $(this);
@@ -79,7 +90,8 @@ jQuery(document).ready(function ($) {
   });
 });
 
-// TRAITEMENT DES FILTRES
+///////////////////// FILTRES ///////////////////////
+
 jQuery(document).ready(function ($) {
   // Fonction pour charger les photos en fonction des filtres
   function fetchPhotos() {
@@ -120,7 +132,7 @@ jQuery(document).ready(function ($) {
   });
 });
 
-// HOVER SUR LES FILTRES
+////////////// HOVER SUR LES FILTRES ////////////////////
 
 jQuery(document).ready(function ($) {
   // Initialiser Select2 sur tous les éléments de filtre
@@ -131,5 +143,20 @@ jQuery(document).ready(function ($) {
   // Configurer spécifiquement #format et #ordre pour masquer le champ de recherche
   $("#format, #ordre").select2({
     minimumResultsForSearch: Infinity, // Désactive complètement le champ de recherche
+  });
+});
+
+///////////////////////// MENU BURGER /////////////////////////
+
+document.addEventListener("DOMContentLoaded", function () {
+  const burgerToggle = document.getElementById("burgerToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const body = document.body;
+
+  // Ouvrir/fermer le menu mobile et transformer le burger
+  burgerToggle.addEventListener("click", function () {
+    burgerToggle.classList.toggle("active"); // Transformation en croix
+    mobileMenu.classList.toggle("active"); // Affiche/masque le menu
+    body.classList.toggle("no-scroll"); // Bloque le scroll
   });
 });

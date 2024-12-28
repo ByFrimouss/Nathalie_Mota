@@ -25,6 +25,22 @@
     ?>
 <!-- Bouton ouverture modal -->
         <button id="myBtn">CONTACT</button>
+
+        <!-- MENU VERSION TELEPHONE -->
+            <!-- Icône du menu burger -->
+            <button class="burger-menu" id="burgerToggle">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
+
+        <!-- Menu mobile masqué par défaut -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="http://nathalie-mota.local/">Accueil</a></li>
+                <li><a href="http://nathalie-mota.local/a-propos/">À propos</a></li>
+                <li><a href="#" id="mobileContactLink">Contact</a></li>
+            </ul>
     </nav>
 
     <?php get_template_part('template-parts/modal_contact'); ?>

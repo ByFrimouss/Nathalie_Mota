@@ -4,12 +4,12 @@ add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 
-    //POUR RELIER LE CSS ET JS DU THÈME ENFANT //
+    /////// POUR RELIER LE CSS ET JS DU THÈME ENFANT //////////
     wp_enqueue_style('theme-style', get_stylesheet_directory_uri() . '/style.css', array());
     wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/script.js', array(), false, true);
 }
 
-  // Activer le support du logo personnalisé
+  ////////////// ACTIVER LE SUPPORT DU LOGO PERSONNALISÉ /////////////
   add_theme_support('custom-logo', array(
     'height'      => 22,
     'width'       => 345,
@@ -17,25 +17,25 @@ function theme_enqueue_styles() {
     'flex-width'  => true,
 ));
 
-// Enregistrer un menu pour le header et footer
+////////// ENREGISTRER UN MENU POUR LE HEADER ET FOOTER /////////////
 register_nav_menus(array(
     'header-menu' => ('Menu Principal'),
     'footer-menu' => ('Menu Footer'),
 ));
 
-/* ** INCLURE JQUERY DEPUIS WORDPRESS (il est déjà intégré par défaut) **/
+/////////// INCLURE JQUERY DEPUIS WORDPRESS (Intégré par défaut) ////////////
 
 function custom_enqueue_scripts() {
     wp_enqueue_script('jquery');
 }
 add_action('wp_enqueue_scripts', 'custom_enqueue_scripts');
 
-/* ** HERO AVEC LE SCRIPT DE CHARGEMENT D’UNE IMAGE ALÉATOIRE ** */
+/////// HERO AVEC LE SCRIPT DE CHARGEMENT D’UNE IMAGE ALÉATOIRE ///////////
 function get_random_hero_image() {
     $upload_dir = wp_get_upload_dir(); // Récupère le répertoire des uploads
     $base_url = $upload_dir['baseurl']; // URL de base du dossier uploads
 
-    // URLs des images
+    // URL DES IMAGES
     $images = array(
         $base_url . '/2024/12/nathalie-0-scaled.jpeg',
         $base_url . '/2024/12/nathalie-1-scaled.jpeg',
@@ -47,7 +47,7 @@ function get_random_hero_image() {
     return $images[array_rand($images)];
 }
 
-/* ** AJAX **/
+//////////////// AJAX POUR CHARGER PLUS //////////////////
 function load_more_photos() {
     if (!isset($_GET['page']) || !isset($_GET['posts_per_page'])) {
         wp_send_json_error();
@@ -116,7 +116,7 @@ add_action('wp_ajax_load_more_photos', 'load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
 
 
-/* ** SCRIPT POUR APPELER AJAX **/
+//////////// RELIER AJAX //////////////
 function enqueue_load_more_script() {
     wp_enqueue_script('load-more-photos', get_template_directory_uri() . '', array('jquery'), null, true);
 
@@ -126,7 +126,7 @@ function enqueue_load_more_script() {
 add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
 
 
-// FONCTION POUR RÉPONDRE AUX REQUÊTES AJAX DÉCLENCHÉES PAR LES FILTRES
+/////// FONCTION POUR RÉPONDRE AUX REQUÊTES AJAX DÉCLENCHÉES PAR LES FILTRES ////////
 function filter_photos() {
     $categorie = isset($_GET['categorie']) ? sanitize_text_field($_GET['categorie']) : '';
     $format = isset($_GET['format']) ? sanitize_text_field($_GET['format']) : '';
@@ -207,7 +207,7 @@ function filter_photos() {
 add_action('wp_ajax_filter_photos', 'filter_photos');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos');
 
-//LIGHTBOX
+/////////////// LIGHTBOX ////////////////
 
 function enqueue_lightbox_scripts() {
     wp_enqueue_style('lightbox-css', get_stylesheet_directory_uri() . '/lightbox.css', array(), '1.0', 'all');

@@ -116,4 +116,3 @@ else :
     echo '<p>Aucune photo trouvée.</p>';
 endif;
 get_footer(); ?>
-

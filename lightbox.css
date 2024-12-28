@@ -1,10 +1,11 @@
-/* Structure principale */
+/************** DÉSACTIVE LE DÉFILEMENT DU BODY ************/
 
-/* Désactive le défilement du body */
 .no-scroll {
   overflow: hidden;
   height: 100%; /* Assure que la hauteur soit fixée pour éviter les décalages */
 }
+
+/************** STRUCTURE PRINCIPALE **************/
 
 #lightbox-overlay {
   position: fixed;
@@ -37,7 +38,8 @@
   object-fit: contain;
 }
 
-/* Styles pour les flèches et les boutons */
+/*********** STYLES POUR LES FLÈCHES ************/
+
 .lightbox-prev,
 .lightbox-next {
   position: fixed;
@@ -65,7 +67,8 @@
   right: 90px;
 }
 
-/* Flèche */
+/****** FLÈCHE *********/
+
 .lightbox-prev .arrow,
 .lightbox-next .arrow {
   background: url("Images/arrow-left-svgrepo-com.svg") no-repeat center center;
@@ -86,7 +89,8 @@
   scale: 1.4; /* Pas de rotation supplémentaire */
 }
 
-/* Texte */
+/********** TEXTE *************/
+
 .lightbox-prev .text,
 .lightbox-next .text {
   margin-left: 10px;
@@ -102,7 +106,7 @@
   margin-left: 0;
 }
 
-/* Hover pour tout le bouton */
+/* Hover pour tout le texte et la flèche */
 .lightbox-prev:hover,
 .lightbox-next:hover {
   opacity: 1;
@@ -119,7 +123,8 @@
   outline: none; /* Supprime le contour bleu ou toute bordure */
 }
 
-/* Bouton Close */
+/*********** BOUTON CLOSE *****************/
+
 .lightbox-close {
   position: fixed;
   top: -10px;
@@ -135,7 +140,8 @@
   opacity: 1;
 }
 
-/* Informations sous l'image */
+/************* INFORMATIONS SOUS L'IMAGE *************/
+
 .lightbox-info {
   display: flex;
   margin-top: 10px;
